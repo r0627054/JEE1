@@ -41,3 +41,8 @@ CarRental-lib/nbproject/private/private.properties
 CarRental-ejb/nbproject/private/private.properties
 CarRental-client/nbproject/private/private.xml
 CarRental-client/nbproject/private/private.properties
+CarRental-ejb/nbproject/private/private.xml
+CarRental-lib/nbproject/private/private.xml
+CarRental-lib/nbproject/private/private.properties
+CarRental-lib/nbproject/private/private.properties
+*.properties

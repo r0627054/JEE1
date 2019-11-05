@@ -5,20 +5,22 @@
  */
 package session;
 
-import javax.ejb.Remote;
+import javax.ejb.Stateless;
 
 /**
- *
- * @author Dries Janse
+ * 
+ * @author Steven Ghekiere, Dries Janse
  */
-@Remote
-public class ManagerSession extends Session {
+@Stateless
+public class ManagerSession implements ManagerSessionRemote{
     
+    @Override
     public int getNumberOfReservationsBy(String clientName) {
         return 0;
     }
     
-    int getNumberOfReservationsForCarType( String carRentalName, String carType){
+    @Override
+    public int getNumberOfReservationsForCarType( String carRentalName, String carType){
         return 0;
     }
 }

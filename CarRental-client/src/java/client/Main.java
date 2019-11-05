@@ -5,10 +5,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import rental.Reservation;
 import session.CarRentalSessionRemote;
-import session.ManagerSession;
-import session.ReservationSession;
+import session.ManagerSessionRemote;
 
-public class Main extends AbstractTestAgency<ReservationSession, ManagerSession>{
+public class Main extends AbstractTestAgency<CarRentalSessionRemote, ManagerSessionRemote>{
     
     @EJB
     static CarRentalSessionRemote session;
@@ -24,37 +23,39 @@ public class Main extends AbstractTestAgency<ReservationSession, ManagerSession>
     }
 
     @Override
-    protected ReservationSession getNewReservationSession(String name) throws Exception {
+    protected CarRentalSessionRemote getNewReservationSession(String name) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    protected ManagerSession getNewManagerSession(String name) throws Exception {
+    protected ManagerSessionRemote getNewManagerSession(String name) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    //ReservationSession Methods
+    @Override
+    protected void getAvailableCarTypes(CarRentalSessionRemote session, Date start, Date end) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    protected void getAvailableCarTypes(ReservationSession session, Date start, Date end) throws Exception {
+    protected void createQuote(CarRentalSessionRemote session, String name, Date start, Date end, String carType, String region) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    protected void createQuote(ReservationSession session, String name, Date start, Date end, String carType, String region) throws Exception {
+    protected List<Reservation> confirmQuotes(CarRentalSessionRemote session, String name) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    //Manager methods
+    @Override
+    protected int getNumberOfReservationsBy(ManagerSessionRemote ms, String clientName) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    protected List<Reservation> confirmQuotes(ReservationSession session, String name) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    protected int getNumberOfReservationsBy(ManagerSession ms, String clientName) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    protected int getNumberOfReservationsForCarType(ManagerSession ms, String carRentalName, String carType) throws Exception {
+    protected int getNumberOfReservationsForCarType(ManagerSessionRemote ms, String carRentalName, String carType) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
