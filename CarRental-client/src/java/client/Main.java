@@ -16,8 +16,9 @@ public class Main extends AbstractTestAgency<CarRentalSessionRemote, ManagerSess
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // System.out.println("found rental companies: " + session.getAllRentalCompanies());
+    public static void main(String[] args) throws Exception {        
+        Main main = new Main("simpleTrips");
+        main.run();        
     }
 
     public Main(String scriptFile) {
