@@ -17,7 +17,8 @@ import rental.ReservationException;
  * @author Steven Ghekiere, Dries Janse
  */
 @Stateless
-@RolesAllowed({"Manager"})
+@RolesAllowed("Manager")
+@DeclareRoles("Manager")
 public class ManagerSession implements ManagerSessionRemote {
 
     @Override

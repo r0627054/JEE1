@@ -2,6 +2,7 @@ package client;
 
 import java.util.Date;
 import java.util.List;
+import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.naming.InitialContext;
@@ -9,7 +10,7 @@ import rental.Reservation;
 import session.CarRentalSessionRemote;
 import session.ManagerSessionRemote;
 
-
+@DeclareRoles("Manager")
 public class Main extends AbstractTestAgency<CarRentalSessionRemote, ManagerSessionRemote> {
 
     @EJB
