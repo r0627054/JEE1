@@ -6,21 +6,34 @@
 package session;
 
 import javax.ejb.Stateless;
+import rental.CarRentalCompany;
+import rental.RentalStore;
+import rental.ReservationException;
 
 /**
- * 
+ *
  * @author Steven Ghekiere, Dries Janse
  */
 @Stateless
-public class ManagerSession implements ManagerSessionRemote{
-    
+public class ManagerSession implements ManagerSessionRemote {
+
     @Override
     public int getNumberOfReservationsBy(String clientName) {
-        return 0;
+        int result = 0;
+
+        for (CarRentalCompany company : RentalStore.getRentals().values()) {
+            result += company.getReservationsByRenter(clientName).size();
+        }
+
+        return result;
     }
-    
+
     @Override
-    public int getNumberOfReservationsForCarType( String carRentalName, String carType){
-        return 0;
+    public int getNumberOfReservationsForCarType(String carRentalName, String carType) throws ReservationException {
+        try {
+            return RentalStore.getRental(carRentalName).getNumberOfReservationsForCarType(carType);
+        } catch (ReservationException e) {
+            throw e;
+        }
     }
 }

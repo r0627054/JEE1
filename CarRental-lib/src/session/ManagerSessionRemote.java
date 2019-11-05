@@ -6,6 +6,7 @@
 package session;
 
 import javax.ejb.Remote;
+import rental.ReservationException;
 
 /**
  *
@@ -14,8 +15,8 @@ import javax.ejb.Remote;
 @Remote
 public interface ManagerSessionRemote {
 
-    int getNumberOfReservationsBy(String clientName);
+    int getNumberOfReservationsBy(String clientName) throws ReservationException ;
 
-    int getNumberOfReservationsForCarType(String carRentalName, String carType);
+    int getNumberOfReservationsForCarType(String carRentalName, String carType) throws ReservationException ;
 
 }

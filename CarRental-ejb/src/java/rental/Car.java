@@ -1,6 +1,7 @@
 package rental;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -12,8 +13,7 @@ public class Car {
 
     /**
      * *************
-     * CONSTRUCTOR *
-     **************
+     * CONSTRUCTOR * *************
      */
     public Car(int uid, CarType type) {
         this.id = uid;
@@ -23,8 +23,7 @@ public class Car {
 
     /**
      * ****
-     * ID *
-     *****
+     * ID * ****
      */
     public int getId() {
         return id;
@@ -32,8 +31,7 @@ public class Car {
 
     /**
      * **********
-     * CAR TYPE *
-     ***********
+     * CAR TYPE * **********
      */
     public CarType getType() {
         return type;
@@ -41,8 +39,7 @@ public class Car {
 
     /**
      * **************
-     * RESERVATIONS *
-     ***************
+     * RESERVATIONS * **************
      */
     public boolean isAvailable(Date start, Date end) {
         if (!start.before(end)) {
@@ -69,5 +66,20 @@ public class Car {
 
     public List<Reservation> getAllReservations() {
         return reservations;
+    }
+
+    public boolean isOfType(CarType type) {
+        return type != null && getType().equals(type);
+    }
+
+    List<Reservation> getAllReservationsOfRenter(String clientName) {
+        List<Reservation> result = new ArrayList<Reservation>();
+
+        for (Reservation res : this.reservations) {
+            if (res.isRenter(clientName)) {
+                result.add(res);
+            }
+        }
+        return result;
     }
 }
