@@ -20,3 +20,11 @@ CarRental/nbproject/private/private.properties
 CarRental/nbproject/project.properties
 CarRental-client/nbproject/ant-deploy.xml
 *.properties
+/CarRental-lib/build/
+/CarRental-lib/dist/
+/CarRental-client/build/
+/CarRental/build/
+/CarRental/dist/
+/CarRental-ejb/build/
+/CarRental-ejb/dist/
+/CarRental-client/dist/
