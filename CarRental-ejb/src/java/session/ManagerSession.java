@@ -5,6 +5,8 @@
  */
 package session;
 
+import javax.annotation.security.DeclareRoles;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import rental.CarRentalCompany;
 import rental.RentalStore;
@@ -15,6 +17,7 @@ import rental.ReservationException;
  * @author Steven Ghekiere, Dries Janse
  */
 @Stateless
+@RolesAllowed({"Manager"})
 public class ManagerSession implements ManagerSessionRemote {
 
     @Override

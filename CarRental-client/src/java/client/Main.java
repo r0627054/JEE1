@@ -2,11 +2,13 @@ package client;
 
 import java.util.Date;
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.naming.InitialContext;
 import rental.Reservation;
 import session.CarRentalSessionRemote;
 import session.ManagerSessionRemote;
+
 
 public class Main extends AbstractTestAgency<CarRentalSessionRemote, ManagerSessionRemote> {
 
@@ -15,10 +17,11 @@ public class Main extends AbstractTestAgency<CarRentalSessionRemote, ManagerSess
 
     /**
      * @param args the command line arguments
+     * @throws java.lang.Exception
      */
-    public static void main(String[] args) throws Exception {        
+    public static void main(String[] args) throws Exception {
         Main main = new Main("simpleTrips");
-        main.run();        
+        main.run(); 
     }
 
     public Main(String scriptFile) {
@@ -34,6 +37,7 @@ public class Main extends AbstractTestAgency<CarRentalSessionRemote, ManagerSess
     }
 
     @Override
+    @RolesAllowed("Manager")
     protected ManagerSessionRemote getNewManagerSession(String name) throws Exception {
         return managerSession;
     }
@@ -56,11 +60,13 @@ public class Main extends AbstractTestAgency<CarRentalSessionRemote, ManagerSess
 
     //Manager methods
     @Override
+    @RolesAllowed("Manager")
     protected int getNumberOfReservationsBy(ManagerSessionRemote ms, String clientName) throws Exception {
         return ms.getNumberOfReservationsBy(clientName);
     }
 
     @Override
+    @RolesAllowed("Manager")
     protected int getNumberOfReservationsForCarType(ManagerSessionRemote ms, String carRentalName, String carType) throws Exception {
         return ms.getNumberOfReservationsForCarType(carRentalName, carType);
     }
