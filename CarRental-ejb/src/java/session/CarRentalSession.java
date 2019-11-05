@@ -67,7 +67,7 @@ public class CarRentalSession implements CarRentalSessionRemote {
             }
 
         }
-        return null;
+        throw new ReservationException("No quote possible to create!");
     }
 
     @Override
@@ -76,19 +76,19 @@ public class CarRentalSession implements CarRentalSessionRemote {
     }
 
     @Override
-    public List<Reservation> confirmQuotes(String name) throws ReservationException {
+    public List<Reservation> confirmQuotes(String clientName) throws ReservationException {
         List<Reservation> result = new ArrayList<Reservation>();
 
         try {
             for (Quote q : getQuotes()) {
-                if (q.getCarRenter().equals(name)) {
+                if (q.getCarRenter().equals(clientName)) {
 
-                    CarRentalCompany companyOfQuote = RentalStore.getRental(q.getCarRenter());
+                    CarRentalCompany companyOfQuote = RentalStore.getRental(q.getRentalCompany());
                     result.add(companyOfQuote.confirmQuote(q));
                 }
             }
         } catch (ReservationException e) {
-            System.out.println("Error with confirming quotes! All quotes will be rolled back. NAME= " + name);
+            System.out.println("Error with confirming quotes! All quotes will be rolled back. NAME= " + clientName);
             for (Reservation r : result) {
                 RentalStore.getRental(r.getRentalCompany()).cancelReservation(r);
             }
