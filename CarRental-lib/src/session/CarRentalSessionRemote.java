@@ -11,14 +11,16 @@ import rental.Reservation;
 @Remote
 public interface CarRentalSessionRemote {
 
+    void setClientName(String clientName);
+
     Set<String> getAllRentalCompanies();
 
     List<CarType> getAvailableCarTypes(Date start, Date end);
-    
+
     Quote createQuote(String name, Date start, Date end, String carType, String region);
-    
+
     List<Quote> getCurrenQuotes();
-    
+
     List<Reservation> confirmQuotes(String name);
 
 }

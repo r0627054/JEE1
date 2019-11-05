@@ -14,10 +14,23 @@ import rental.Reservation;
 @Stateful
 public class CarRentalSession implements CarRentalSessionRemote {
 
+    /**
+     * The (String) name of the client.
+     */
+    private String clientName;
+    
+    /**
+     * The list of quotes for this session.
+     */
     private List<Quote> quotes;
-
-    public CarRentalSession() {
+    
+    public CarRentalSession(String clientName) {
         setQuotes(new ArrayList<Quote>());
+        setClientName(clientName);
+    }
+    
+    public CarRentalSession(){
+        this("CarRentalSession");
     }
 
     @Override
@@ -54,4 +67,14 @@ public class CarRentalSession implements CarRentalSessionRemote {
         this.quotes = quotes;
     }
 
+    public String getClientName() {
+        return clientName;
+    }
+
+    @Override
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    
 }

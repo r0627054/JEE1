@@ -23,9 +23,9 @@ public class RentalStore {
         }
         return out;
     }
-    
-    public static synchronized Map<String, CarRentalCompany> getRentals(){
-        if(rentals == null){
+
+    public static synchronized Map<String, CarRentalCompany> getRentals() {
+        if (rentals == null) {
             rentals = new HashMap<String, CarRentalCompany>();
             loadRental("hertz.csv");
             loadRental("dockx.csv");
@@ -53,14 +53,14 @@ public class RentalStore {
         CrcData out = new CrcData();
         StringTokenizer csvReader;
         int nextuid = 0;
-       
+
         //open file from jar
         BufferedReader in = new BufferedReader(new InputStreamReader(RentalStore.class.getClassLoader().getResourceAsStream(datafile)));
-        
+
         try {
             while (in.ready()) {
                 String line = in.readLine();
-                
+
                 if (line.startsWith("#")) {
                     // comment -> skip					
                 } else if (line.startsWith("-")) {
@@ -78,19 +78,20 @@ public class RentalStore {
                     //create N new cars with given type, where N is the 5th field
                     for (int i = Integer.parseInt(csvReader.nextToken()); i > 0; i--) {
                         out.cars.add(new Car(nextuid++, type));
-                    }        
+                    }
                 }
-            } 
+            }
         } finally {
             in.close();
         }
 
         return out;
     }
-    
+
     static class CrcData {
-            public List<Car> cars = new LinkedList<Car>();
-            public String name;
-            public List<String> regions =  new LinkedList<String>();
+
+        public List<Car> cars = new LinkedList<Car>();
+        public String name;
+        public List<String> regions = new LinkedList<String>();
     }
 }
